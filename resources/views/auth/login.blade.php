@@ -40,6 +40,44 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
+
+                            <div class="col-md-6">
+                            <img src="{{captcha_src('flat')}}" onclick="this.src='/captcha/flat?'+Math.random()" id="captchaCode" alt="" class="captcha">
+                   
+                                <a rel="nofollow" href="javascript:;" onclick="document.getElementById('captchaCode').src='captcha/flat?'+Math.random()" class="refresh">
+                                                        
+                                    <button type="button" class="btn btn-info btn-refresh">Refresh</button>
+                                </a>
+                            </div>
+                        </div>
+ 
+                        <div class="form-group row">
+                            <div class="offset-md-4 col-md-6">
+                                <input id="captcha" type="captcha" class="form-control @error('captcha') is-invalid @enderror" name="captcha" value="{{ old('captcha') }}" required autocomplete="captcha" autofocus>
+
+                                @error('captcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <script type="text/javascript">
+                        $('#refresh').click(function(){
+                        $.ajax({
+                            type:'GET',
+                            url:'refreshcaptcha',
+                            success:function(data){
+                                $(".captcha span").html(data.captcha);
+                            }
+                        });
+                        });
+                        </script>
+
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

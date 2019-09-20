@@ -53,6 +53,8 @@
                             </div>
                         </div>
 
+                    
+
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -60,7 +62,52 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                      
+                        <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
 
+                            <div class="col-md-6">
+                            <img src="{{captcha_src('flat')}}" onclick="this.src='/captcha/flat?'+Math.random()" id="captchaCode" alt="" class="captcha">
+                   
+                                <a rel="nofollow" href="javascript:;" onclick="document.getElementById('captchaCode').src='captcha/flat?'+Math.random()" class="refresh">
+                                                        
+                                    <button type="button" class="btn btn-info btn-refresh">Refresh</button>
+                                </a>
+                            </div>
+                        </div>
+ 
+                        <div class="form-group row">
+                            <div class="offset-md-4 col-md-6">
+                                <input id="captcha" type="captcha" class="form-control @error('captcha') is-invalid @enderror" name="captcha" value="{{ old('captcha') }}" required autocomplete="captcha" autofocus>
+
+                                @error('captcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                    <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="form-group col-md-4">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                    </div>
+
+
+                        <script type="text/javascript">
+                        $('#refresh').click(function(){
+                        $.ajax({
+                            type:'GET',
+                            url:'refreshcaptcha',
+                            success:function(data){
+                                $(".captcha span").html(data.captcha);
+                            }
+                        });
+                        });
+                        </script>
+                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
