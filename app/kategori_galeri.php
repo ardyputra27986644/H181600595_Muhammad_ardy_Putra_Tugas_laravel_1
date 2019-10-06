@@ -10,5 +10,5 @@ class Kategori_galeri extends Model
 
     protected $table="kategori_galeri";
 
-    protected $fillable=['user_id','nama'];
+    protected $fillable=['users_id','nama'];
 }

@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Information Secret Base Freedom Country
                 </div>
 
                 <div class="links">

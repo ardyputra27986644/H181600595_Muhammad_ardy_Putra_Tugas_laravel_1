@@ -10,5 +10,5 @@ class artikel extends Model
 
     protected $table="artikel";
 
-    protected $fillable=['judul','isi','user_id'];
+    protected $fillable=['judul','isi','user_id','kategori_artikel_id'];
 }
