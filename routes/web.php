@@ -18,61 +18,51 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('my-captcha', 'HomeController@myCaptcha')->name('myCaptcha');
+Route::post('my-captcha', 'HomeController@myCaptchapost')->name('myCaptcha.post');
+Route::get('refresh_captcha', 'HomeController@refresh_captcha')->name('refresh_captcha');
 
-route::get('/kategori_artikel','kategoriartikelcontroller@index')->name('kategori_artikel.index');
+Route::get('/kategori_artikel','KategoriArtikelController@index')->name('kategori_artikel.index');
+Route::get('/kategori_artikel/create','KategoriArtikelController@create')->name('kategori_artikel.create');
+Route::post('/kategori_artikel','KategoriArtikelController@store')->name('kategori_artikel.store');
+Route::get('/kategori_artikel/{id}','KategoriArtikelController@show')->name('kategori_artikel.show');
 
-Auth::routes();
+Route::get('/artikel','ArtikelController@index')->name('artikel.index');
+Route::get('/artikel/create','ArtikelController@create')->name('artikel.create');
+Route::post('/artikel','ArtikelController@store')->name('artikel.store');
+Route::get('/artikel/{id}','ArtikelController@show')->name('artikel.show');
 
-Route::get('ajax_regen_captcha', function(){
-    return captcha_src();
-});
-//crud kategori artikel
-Route::get('/kategori_artikel','kategori_artikel_controller@index')->name('kategori_artikel.index');
-Route::get('/kategori_artikel/create','kategori_artikel_controller@create')->name('kategori_artikel.create');
-Route::post('/kategori_artikel','kategori_artikel_controller@store')->name('kategori_artikel.store');
-Route::get('/kategori_artikel/{id}','kategori_artikel_controller@show')->name('kategori_artikel.show');
+Route::get('/berita','BeritaController@index')->name('berita.index');
+Route::get('/berita/create','BeritaController@create')->name('berita.create');
+Route::post('/berita','BeritaController@store')->name('berita.store');
+Route::get('/berita/{id}','BeritaController@show')->name('berita.show');
 
-//crud kategori berita
-Route::get('/kategori_berita','kategori_berita_controller@index')->name('kategori_berita.index');
-Route::get('/kategori_berita/create','kategori_berita_controller@create')->name('kategori_berita.create');
-Route::post('/kategori_berita','kategori_berita_controller@store')->name('kategori_berita.store');
-Route::get('/kategori_berita/{id}','kategori_berita_controller@show')->name('kategori_berita.show');
+Route::get('/kategori_berita','KategoriBeritaController@index')->name('kategori_berita.index');
+Route::get('/kategori_berita/create','KategoriBeritaController@create')->name('kategori_berita.create');
+Route::post('/kategori_berita','KategoriBeritaController@store')->name('kategori_berita.store');
+Route::get('/kategori_berita/{id}','KategoriBeritaController@show')->name('kategori_berita.show');
 
-//crud kategori_galeri
-Route::get('/kategori_galeri','kategori_galeri_controller@index')->name('kategori_galeri.index');
-Route::get('/kategori_galeri.create','kategori_galeri_controller@create')->name('kategori_galeri.create');
-Route::post('/kategori_galeri','kategori_galeri_controller@store')->name('kategori_galeri.store');
-Route::get('/kategori_galeri/{id}','kategori_galeri_controller@show')->name('kategori_galeri.show');
 
-//crud kategori_pengumuman
-Route::get('/kategori_pengumuman','kategori_pengumuman_controller@index')->name('kategori_pengumuman.index');
-Route::get('/kategori_pengumuman.create','kategori_pengumuman_controller@create')->name('kategori_pengumuman.create');
-Route::post('/kategori_pengumuman','kategori_pengumuman_controller@store')->name('kategori_pengumuman.store');
-Route::get('/kategori_pengumuman/{id}','kategori_pengumuman_controller@show')->name('kategori_pengumuman.show');
+Route::get('/kategori_galeri','KategoriGaleriController@index')->name('kategori_galeri.index');
+Route::get('/kategori_galeri/create','KategoriGaleriController@create')->name('kategori_galeri.create');
+Route::post('/kategori_galeri','KategoriGaleriController@store')->name('kategori_galeri.store');
+Route::get('/kategori_galeri/{id}','KategoriGaleriController@show')->name('kategori_galeri.show');
 
-//crud artikel
-Route::get('/artikel','artikel_controller@index')->name('artikel.index');
-Route::get('/artikel/create','artikel_controller@create')->name('artikel.create');
-Route::post('/artikel','artikel_controller@store')->name('artikel.store');
-Route::get('/artikel/{id}','artikel_controller@show')->name('artikel.show');
+Route::get('/galeri','GaleriController@index')->name('galeri.index');
+Route::get('/galeri/create','GaleriController@create')->name('galeri.create');
+Route::post('/galeri','GaleriController@store')->name('galeri.store');
+Route::get('/galeri/{id}','GaleriController@show')->name('galeri.show');
 
-//crud berita
-Route::get('/berita','berita_controller@index')->name('berita.index');
-Route::get('/berita/create','berita_controller@create')->name('berita.create');
-Route::post('/berita','berita_controller@store')->name('berita.store');
-Route::get('/berita/{id}','berita_controller@show')->name('berita.show');
+Route::get('/pengumuman','PengumumanController@index')->name('pengumuman.index');
+Route::get('/pengumuman/create','PengumumanController@create')->name('pengumuman.create');
+Route::post('/pengumuman','PengumumanController@store')->name('pengumuman.store');
+Route::get('/pengumuman/{id}','PengumumanController@show')->name('pengumuman.show');
 
-//crud galeri
-Route::get('/galeri','galeri_controller@index')->name('galeri.index');
-Route::get('/galeri/create','galeri_controller@create')->name('galeri.create');
-Route::post('/galeri','galeri_controller@store')->name('galeri.store');
-Route::get('/galeri/{id}','galeri_controller@show')->name('galeri.show');
+Route::get('/kategori_pengumuman','KategoriPengumumanController@index')->name('kategori_pengumuman.index');
+Route::get('/kategori_pengumuman/create','KategoriPengumumanController@create')->name('kategori_pengumuman.create');
+Route::post('/kategori_pengumuman','KategoriPengumumanController@store')->name('kategori_pengumuman.store');
+Route::get('/kategori_pengumuman/{id}','KategoriPengumumanController@show')->name('kategori_pengumuman.show');
 
-//crud pengumuman
-Route::get('/pengumuman','pengumuman_controller@index')->name('pengumuman.index');
-Route::get('/pengumuman/create','pengumuman_controller@create')->name('pengumuman.create');
-Route::post('/pengumuman','pengumuman_controller@store')->name('pengumuman.store');
-Route::get('/pengumuman/{id}','pengumuman_controller@show')->name('pengumuman.show');
 
 
 
