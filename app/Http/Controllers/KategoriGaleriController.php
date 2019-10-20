@@ -29,4 +29,20 @@ class KategoriGaleriController extends Controller
     	KategoriGaleri::create($input);
     	return redirect(route('kategori_galeri.index'));
     }
+
+    public function edit($id){
+        $KategoriGaleri = \App\KategoriGaleri::find($id);
+
+        if (empty($KategoriGaleri)){
+           return redirect(route('kategori_galeri.index'));
+        }
+
+        return view('kategori_galeri.edit',compact('KategoriGaleri'));
+    }
+
+    public function update(Request $request,$id){
+    	$input=$request->all();
+    	KategoriGaleri::find($id)->update($input);
+        return redirect(route('kategori_galeri.index'));
+    }
 }

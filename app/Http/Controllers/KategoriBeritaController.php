@@ -29,4 +29,19 @@ class KategoriBeritaController extends Controller
     	KategoriBerita::create($input);
     	return redirect(route('kategori_berita.index'));
     }
+    public function edit($id){
+        $KategoriBerita = \App\KategoriBerita::find($id);
+
+        if (empty($KategoriBerita)){
+           return redirect(route('kategori_berita.index'));
+        }
+
+        return view('kategori_berita.edit',compact('KategoriBerita'));
+    }
+
+    public function update(Request $request,$id){
+    	$input=$request->all();
+    	KategoriBerita::find($id)->update($input);
+        return redirect(route('kategori_berita.index'));
+    }
 }
